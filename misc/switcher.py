@@ -51,11 +51,11 @@ ctx.keymap(
         "fox slack": lambda x: switch_app(x, "Slack"),
         "fox term": lambda x: switch_app(x, "Alacritty"),
         "fox signal": lambda x: switch_app(x, "Signal"),
-        "system preferences": lambda x: switch_app(x, "System Preferences"),
+        "fox preferences": lambda x: switch_app(x, "System Preferences"),
     }
 )
 
-hardcoded_application_names = {"term": "Alacritty"}
+hardcoded_application_names = {"term": "Alacritty", "preferences": "System Preferences"}
 
 
 def update_lists():

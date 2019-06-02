@@ -34,7 +34,7 @@ ctx.keymap(
         PREFIX + "checkout [<dgndictation>]": ["git checkout ", text],
         PREFIX + "checkout branch [<dgndictation>]": ["git checkout -B ", text],
         PREFIX + "cherry pick [<dgndictation>]": ["git cherry-pick ", text],
-        PREFIX + "commit [<dgndictation>]": ['git commit -m ""', Key("left"), text],
+        PREFIX + "commit [<dgndictation>]": ['git commit -am ""', Key("left"), text],
         PREFIX
         + "commit amend [<dgndictation>]": [
             'git commit --amend -m ""',
