@@ -46,19 +46,16 @@ ctx.keymap(
         "focus {switcher.running}": switch_app,
         "launch {switcher.launch}": launch_app,
         # custom switchers here
-        "madam": lambda x: switch_app(x, "Atom"),
+        "fox idea": lambda x: switch_app(x, "IntelliJ IDEA CE"),
         "fox chrome": lambda x: switch_app(x, "Google Chrome"),
-        "fox outlook": lambda x: switch_app(x, "Outlook"),
         "fox slack": lambda x: switch_app(x, "Slack"),
-        "fox iterm": lambda x: switch_app(x, "iTerm2"),
-        "fox term": lambda x: switch_app(x, "iTerm2"),
-        "fox skype": lambda x: switch_app(x, "Skype for Business"),
+        "fox term": lambda x: switch_app(x, "Alacritty"),
         "fox signal": lambda x: switch_app(x, "Signal"),
         "system preferences": lambda x: switch_app(x, "System Preferences"),
     }
 )
 
-hardcoded_application_names = {"term": "iTerm2"}
+hardcoded_application_names = {"term": "Alacritty"}
 
 
 def update_lists():

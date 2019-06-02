@@ -1,9 +1,10 @@
-TERMINAL_BUNDLES = ("com.apple.Terminal", "com.googlecode.iterm2")
+TERMINAL_BUNDLES = ("com.apple.Terminal", "com.googlecode.iterm2", "io.alacritty")
 
 EDITOR_BUNDLES = (
     "com.microsoft.VSCode",
     "com.github.atom",
     "com.apple.TextEdit",
+    "org.gnu.Emacs",
     # jetbrains
     "com.jetbrains.intellij",
     "com.jetbrains.intellij.ce",

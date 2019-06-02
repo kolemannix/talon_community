@@ -23,7 +23,6 @@ def title_case_capitalize_word(index, word, _):
     else:
         return word
 
-
 formatters = normalise_keys(
     {
         "tree": (True, lambda i, word, _: word[0:3] if i == 0 else ""),
@@ -49,7 +48,7 @@ formatters = normalise_keys(
             True,
             lambda i, word, _: "@" + word if i == 0 else word.capitalize(),
         ),
-        "(criff | criffed)": (True, lambda i, word, _: word.capitalize()),
+        "(pascal | criff | criffed)": (True, lambda i, word, _: word.capitalize()),
         "tridal": (False, lambda i, word, _: word.capitalize()),
         "snake": (True, lambda i, word, _: word if i == 0 else "_" + word),
         "dotsnik": (True, lambda i, word, _: "." + word if i == 0 else "_" + word),
