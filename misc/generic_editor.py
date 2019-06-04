@@ -186,9 +186,9 @@ def word_prev(m, valid_characters=alphanumeric):
 ctx.keymap(
     {
         # meta
-        "(save it | sage)": Key("cmd-s"),
-        "(undo it | dizzle)": Key("cmd-z"),
-        "(redo it | rizzle)": Key("cmd-shift-z"),
+        "save it": Key("cmd-s"),
+        "undo it": Key("cmd-z"),
+        "redo it": Key("cmd-shift-z"),
         # clipboard
         "(clip cut | snatch)": Key("cmd-x"),
         "(clip copy | stoosh)": Key("cmd-c"),
@@ -202,7 +202,7 @@ ctx.keymap(
         "(go line before end | smear)": Key("cmd-right left"),
         # insertions
         "([insert] line break | sky turn)": Key("shift-enter"),
-        "([insert] new line below | slap)": Key("cmd-right enter"),
+        # "([insert] new line below | slap)": Key("cmd-right enter"),
         "([insert] new line above | shocker)": Key("ctrl-a cmd-left enter up"),
         "([insert] duplicate line | jolt)": Key(
             "ctrl-a cmd-left shift-down cmd-c down cmd-v"

@@ -19,6 +19,7 @@ ctx.keymap(
         "word talon": "talon",
         "word val": "val",
         "word tip": "tip",
-        "word koleman": "koleman"
+        "word koleman": "koleman",
+        "word sbt": "sbt"
     }
 )

@@ -10,7 +10,6 @@ def shrink_word(m):
         raise Exception("%s not in shrink map" % word)
     Str(shrink_map[word])(None)
 
-
 shrink_map = {
     "administrator": "admin",
     "alternate": "alt",
@@ -85,7 +84,6 @@ shrink_map = {
     "applications": "apps",
     "architecture": "arch",
     "argument": "arg",
-    "arguments": "args",
     "attribute": "attr",
     "attributes": "attrs",
     "authentic": "auth",

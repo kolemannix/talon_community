@@ -1,14 +1,26 @@
 """
-Commands that write bits of code that is valid for multiple languages
 """
 
 from talon.voice import Context, Key
+from ..utils import text
 
 ctx = Context("general_lang")
 
 ctx.keymap(
     {
+        # Vim-like Editor
+        "redo": Key("ctrl-r"),
         # Operators
+        # "args": ["()", Key("left")],
+        # Somehow 'args' doesn't work
+        "spamma": ", ",
+        "bargs": ["()", Key("left")],
+        "fun [<dgndictation>]": ["fn ", text],
+        "def [<dgndictation>]": ["def ", text],
+        "val [<dgndictation>]": ["val ", text],
+        "let [<dgndictation>]": ["let ", text],
+        "function [<dgndictation>]": ["fn ", text],
+        "pub": "pub ",
         "(op equals | assign | equeft)": " = ",
         "(op (minus | subtract) | deminus)": " - ",
         "(op (plus | add) | deplush)": " + ",
@@ -45,7 +57,6 @@ ctx.keymap(
         "[op] (arrow | lambo)": " -> ",
         "[op] fat (arrow | lambo)": " => ",
         # Completed matchables
-        "(empty parens | call)": "()",
         "empty (dict | object)": "{}",
         "(empty array | brackers)": "[]",
         # Blocks
@@ -56,7 +67,6 @@ ctx.keymap(
         "coalshock": [":", Key("enter")],
         "comshock": [",", Key("enter")],
         "sinker": [Key("cmd-right ;")],
-        "swipe": ", ",
         "coalgap": ": ",
         "[forward] slasher": "// ",
         # Statements

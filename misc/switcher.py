@@ -13,6 +13,7 @@ def lookup_app(m=None, name=None):
     elif name is None:
         name = str(m["switcher.running"][0])
 
+    print(running)
     full = running.get(name)
     if not full:
         return
@@ -46,16 +47,21 @@ ctx.keymap(
         "focus {switcher.running}": switch_app,
         "launch {switcher.launch}": launch_app,
         # custom switchers here
-        "fox idea": lambda x: switch_app(x, "IntelliJ IDEA CE"),
-        "fox chrome": lambda x: switch_app(x, "Google Chrome"),
-        "fox slack": lambda x: switch_app(x, "Slack"),
-        "fox term": lambda x: switch_app(x, "Alacritty"),
-        "fox signal": lambda x: switch_app(x, "Signal"),
-        "fox preferences": lambda x: switch_app(x, "System Preferences"),
+        # "switch idea": lambda x: switch_app(x, "IntelliJ IDEA CE"),
+        # "switch chrome": lambda x: switch_app(x, "Google Chrome"),
+        # "switch slack": lambda x: switch_app(x, "Slack"),
+        # "switch term": lambda x: switch_app(x, "Alacritty"),
+        # "switch signal": lambda x: switch_app(x, "Signal"),
+        # "switch preferences": lambda x: switch_app(x, "System Preferences"),
     }
 )
 
-hardcoded_application_names = {"term": "Alacritty", "preferences": "System Preferences"}
+hardcoded_application_names = {
+    "term": "Alacritty",
+    "preferences": "System Preferences",
+    "idea": "IntelliJ IDEA",
+    "intellij": "IntelliJ IDEA"
+}
 
 
 def update_lists():

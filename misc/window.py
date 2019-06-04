@@ -1,7 +1,7 @@
 import time
 
 from talon import ui
-from talon.voice import Context
+from talon.voice import Context, Key
 
 from ..config import config
 from .. import utils
@@ -130,9 +130,19 @@ def window_move_application_screen(m):
     )
 
 
-ctx = Context("window_management")
+ctx = Context("window")
 ctx.keymap(
     {
+
+        # zooming
+        "zoom in": Key("cmd-="),
+        "zoom out": Key("cmd--"),
+        "zoom normal": Key("cmd-0"),
+        # window control
+
+        "app next": Key("cmd-tab"),
+        "app cycle": Key("cmd-`"),
+
         "snap left": grid(1, 1, 2, 1),
         "snap right": grid(2, 1, 2, 1),
         "snap top": grid(1, 1, 1, 2),
@@ -145,9 +155,12 @@ ctx.keymap(
         "snap center": grid(2, 2, 8, 8, 6, 6),
         "snap next": next_screen,
         "snap last": previous_screen,
-        "window [move] next screen": next_screen,
-        "window [move] preev screen": previous_screen,
+        "window [move] next": next_screen,
+        "window [move] preev": previous_screen,
         "window [move] screen" + utils.numerals: window_move_screen,
+        "window close": Key("cmd-w"),
+        "window minimize": Key("cmd-m"),
+        "window new": Key("cmd-n"),
         "[window] [move] {switcher.running} [to] screen "
         + utils.numerals: window_move_application_screen,
     }

@@ -32,7 +32,7 @@ context.keymap(
         "const [<dgndictation>]": ["const ", text],
         "let [<dgndictation>]": ["let ", text],
         "static": "static ",
-        "args": ["()", Key("left")],
+        # "args": ["()", Key("left")],
         "index": ["[]", Key("left")],
         "block": [" {}", Key("left enter enter up tab")],
         "empty array": "[]",

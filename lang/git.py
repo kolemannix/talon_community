@@ -78,7 +78,7 @@ ctx.keymap(
         PREFIX + "stash": "git stash ",
         PREFIX + "stash apply": "git stash apply ",
         PREFIX + "stash pop": "git stash pop ",
-        PREFIX + "status": "git status ",
+        PREFIX + "status": ["git status\n"],
         PREFIX + "tag": "git tag ",
         PREFIX + "add commit": ["git add  && git commit"] + ([Key("left")] * 14),
     }

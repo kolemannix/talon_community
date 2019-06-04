@@ -49,8 +49,6 @@ directory_shortcuts = {
     "talon plug-ins": TALON_PLUGINS,
     "talon community": "~/.talon/user/talon_community",
 }
-directory_shortcuts.update(load_config_json("directory_shortcuts.json"))
-
 
 def cd_directory_shortcut(m):
     directory = directory_shortcuts[m[1]]
@@ -106,7 +104,6 @@ keymap = {
     "talon reple": "~/.talon/bin/repl",
     # some habits die hard
     "troll char": Key("ctrl-c"),
-    "reverse": Key("ctrl-r"),
     "cd": ["cd ; ls", Key("left"), Key("left"), Key("left"), Key("left")],
     "cd wild": [
         "cd **; ls",
@@ -131,7 +128,6 @@ keymap = {
     "(la | run la)": "ls -la\n",
     # "durrup": "cd ..; ls\n",
     "go back": "cd -\n",
-    "dash <dgndictation> [over]": dash,
     "pseudo": "sudo ",
     "(redo pseudo | pseudo [make me a] sandwich)": [
         Key("up"),
@@ -139,25 +135,15 @@ keymap = {
         "sudo ",
         Key("enter"),
     ],
-    "pseudo shut down now": "sudo shutdown now",
     "shell C H mod": "chmod ",
-    "shell clear": [Key("ctrl-c"), "clear\n"],
+    "shell clear": Key("ctrl-l"),
     "shell copy [<dgndictation>]": ["cp ", text],
     "shell copy (recursive | curse) [<dgndictation>]": ["cp -r", text],
     "shell kill": Key("ctrl-c"),
     "shell list [<dgndictation>]": ["ls ", text],
     "shell list all [<dgndictation>]": ["ls -la ", text],
     "shell make (durr | dear | directory) [<dgndictation>]": ["mkdir ", text],
-    "shell mipple [<dgndictation>]": ["mkdir -p ", text],
     "shell move [<dgndictation>]": ["mv ", text],
-    "shell remove [<dgndictation>]": ["rm ", text],
-    "shell remove (recursive | curse) [<dgndictation>]": ["rm -rf ", text],
-    "shell enter": "ag -l | entr ",
-    "shell enter 1": "ag -l . .. | entr ",
-    "shell enter 2": "ag -l . ../.. | entr ",
-    "shell enter 3": "ag -l . ../../.. | entr ",
-    "shell enter 4": "ag -l . ../../../.. | entr ",
-    "shell less [<dgndictation>]": ["less ", text],
     "shell cat [<dgndictation>]": ["cat ", text],
     "shell X args [<dgndictation>]": ["xargs ", text],
     "shell mosh": "mosh ",
@@ -178,27 +164,12 @@ keymap = {
         "source `find . | grep bin/activate$`",
         Key("enter"),
     ],
-    # apt-get
-    "apt get": "apt-get ",
-    "apt get install": "apt-get install ",
-    "apt get update": "apt-get update ",
-    "apt get upgrade": "apt-get upgrade ",
     # Tools
     # "(grep | grip)": ["grep  .", Key("left left")],
     "(grep | grip)": "grep ",
     # "gripper": ["grep -r  .", Key("left left")],
     "pee socks": "ps aux ",
     "vi": "vi ",
-    # python
-    "pip": "pip",
-    "pip install": "pip install ",
-    "pip install requirements": "pip install -r ",
-    "pip install editable": "pip install -e ",
-    "pip install this": "pip install -e .",
-    "pip install local": "pip install -e .",
-    "pip [install] upgrade": "pip install --upgrade ",
-    "pip uninstall": "pip uninstall ",
-    "pip list": "pip list",
     # kubectl
     KUBERNETES_PREFIX + "control": "kubectl ",
     KUBERNETES_PREFIX + "create": "kubectl create ",
@@ -244,14 +215,15 @@ keymap = {
     KUBERNETES_PREFIX
     + "shell": ["kubectl exec -it  -- /bin/bash"]
     + [Key("left")] * 13,
-    # conda
-    "conda install": "conda install ",
-    "conda list": "conda list ",
     # tmux
-    "T mux new session": "tmux ",
-    "T mux list": "tmux ls",
-    "T mux attach [<dgndictation>]": ["tmux a -t ", text],
-    "T mux scroll": [Key("ctrl-b"), Key("[")],
+    "shell attach [<dgndictation>]": ["tmuxre ", text],
+    "teemux": Key("ctrl-a"),
+    "teemux visual": [Key("ctrl-a"), "a"],
+    # "tee mucks": "tmux ",
+    # "T hello": "tmux ",
+    # "T mux list": "tmux ls",
+    # "T mux attach [<dgndictation>]": ["tmux a -t ", text],
+    # "T mux scroll": [Key("ctrl-b"), Key("[")],
     # other
     "shell make": "make\n",
     "shell jobs": "jobs\n",
@@ -284,28 +256,15 @@ ctx.set_list("directory_shortcuts", directory_shortcuts.keys())
 
 def shell_rerun(m):
     # switch_app(name='iTerm2')
-    app = ui.apps(bundle="com.googlecode.iterm2")[0]
+    app = ui.apps(bundle="io.alacritty")[0]
     ctrl.key_press("c", ctrl=True, app=app)
     time.sleep(0.05)
     ctrl.key_press("up", app=app)
     ctrl.key_press("enter", app=app)
 
-
-def shell_new_server(m):
-    """
-    global command for swtching to iterm, creating a new pain and logging into
-    the specified server
-    """
-    switch_app("iTerm2")
-    new_server(m)
-
-
 global_ctx = Context("global_terminal")
 global_ctx.keymap(
     {
         "shell rerun": shell_rerun,
-        "shell server {global_terminal.servers}": name_servers,
-        "shell new {global_terminal.servers}": shell_new_server,
     }
 )
-global_ctx.set_list("servers", servers.keys())
