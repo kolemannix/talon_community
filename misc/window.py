@@ -140,7 +140,7 @@ ctx.keymap(
         "zoom normal": Key("cmd-0"),
         # window control
 
-        "app next": Key("cmd-tab"),
+        # "app next": Key("cmd-tab"),
         "app cycle": Key("cmd-`"),
 
         "snap left": grid(1, 1, 2, 1),

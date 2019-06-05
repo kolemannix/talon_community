@@ -51,7 +51,8 @@ ctx.keymap(
         "talon map <dgndictation>": ("'", text, "': ,", Key("left")),
         "talon map string <dgndictation>": format_text("'{0}': '{0}',"),
         "dragon dictation": "<dgndictation>",
-        "stir": ["Str()(None)"] + [Key("left")] * 7,
+        # "stir": ["Str()(None)"] + [Key("left")] * 7,
         "add alternative [<dgndictation>]": add_alternative,
     }
 )
+

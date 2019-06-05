@@ -197,8 +197,8 @@ ctx.keymap(
         "(go word left | fame | peg)": Key("alt-left"),
         "(go word right | fish | fran)": Key("alt-right"),
         "(go line after end | derek)": Key("cmd-right space"),
-        "(go line start | lefty)": Key("cmd-left"),
-        "(go line end | ricky)": Key("cmd-right"),
+        "(go line start)": Key("cmd-left"),
+        "(go line end)": Key("cmd-right"),
         "(go line before end | smear)": Key("cmd-right left"),
         # insertions
         "([insert] line break | sky turn)": Key("shift-enter"),

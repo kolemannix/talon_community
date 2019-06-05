@@ -3,6 +3,8 @@ from talon.voice import Context, Key
 ctx = Context("symbol")
 
 keymap = {
+    # capital letters
+    "goose": "G",
     # simple
     "(question [mark] | questo)": "?",
     "plus": "+",
@@ -11,15 +13,15 @@ keymap = {
     "(dollar [sign] | dolly)": "$",
     "(downscore | crunder | down score)": "_",
     "colon": ":",
-    "(lparen | [left] paren | open paren )": "(",
+    "(paren | left paren | open paren )": "(",
     "(R paren | close paren | right paren)": ")",
-    "(brace | left brace | kirksorp)": "{",
-    "(rbrace | are brace | right brace | kirkos)": "}",
+    "(brace | left brace | open brace)": "{",
+    "(closing brace | right brace | close brace)": "}",
     "(angle | left angle | less than)": "<",
     "(rangle | are angle | right angle | greater than)": ">",
     "(star | asterisk)": "*",
     "(pound | hash [sign] | octo | number sign)": "#",
-    "percent [sign]": "%",
+    "(percent | mod)": "%",
     "caret": "^",
     "at sign": "@",
     "(and sign | ampersand | amper)": "&",

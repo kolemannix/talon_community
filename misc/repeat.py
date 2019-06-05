@@ -34,8 +34,7 @@ def ordinal(n):
 for n in range(2, 100):
     ordinals[ordinal(n)] = n - 1
 
-ctx.set_list("ordinals", ordinals.keys())
-
+# ctx.set_list("ordinals", ordinals.keys())
 
 def repeat(m):
     o = m["repeater.ordinals"][0]
@@ -43,5 +42,4 @@ def repeat(m):
     repeater.ctx = talon
     return repeater(None)
 
-
-ctx.keymap({"{repeater.ordinals}": repeat})
+# ctx.keymap({"{repeater.ordinals}": repeat})

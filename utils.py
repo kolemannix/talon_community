@@ -135,6 +135,15 @@ def word(m):
     except AttributeError:
         pass
 
+def capitalized_word(m):
+    try:
+        text = join_words(
+            map(lambda w: parse_word(remove_dragon_junk(w)), m.dgnwords[0]._words)
+        )
+        insert(text.capitalize())
+    except AttributeError:
+        pass
+
 
 def surround(left_surrounder, right_surrounder=None):
     def func(i, word, last):

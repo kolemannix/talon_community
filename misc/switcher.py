@@ -44,7 +44,7 @@ def launch_app(m=None, name=None):
 ctx = Context("switcher")
 ctx.keymap(
     {
-        "focus {switcher.running}": switch_app,
+        "switch {switcher.running}": switch_app,
         "launch {switcher.launch}": launch_app,
         # custom switchers here
         # "switch idea": lambda x: switch_app(x, "IntelliJ IDEA CE"),
@@ -58,6 +58,9 @@ ctx.keymap(
 
 hardcoded_application_names = {
     "term": "Alacritty",
+    "boost": "Boostnote",
+    "notes": "Boostnote",
+    "chrome": "Google Chrome",
     "preferences": "System Preferences",
     "idea": "IntelliJ IDEA",
     "intellij": "IntelliJ IDEA"

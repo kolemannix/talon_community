@@ -10,6 +10,7 @@ ctx.keymap(
     {
         # Vim-like Editor
         "redo": Key("ctrl-r"),
+        "scala option": ["Option[]", Key("left")],
         # Operators
         # "args": ["()", Key("left")],
         # Somehow 'args' doesn't work
@@ -60,7 +61,7 @@ ctx.keymap(
         "empty (dict | object)": "{}",
         "(empty array | brackers)": "[]",
         # Blocks
-        "[brace] block": [" {}", Key("left enter enter up tab")],
+        # "[brace] block": [" {}", Key("left enter enter up tab")],
         "(square | brax) block": ["[", Key("enter")],
         "(paren | prex) block": ["(", Key("enter")],
         # Combos

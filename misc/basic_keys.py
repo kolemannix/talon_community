@@ -32,7 +32,7 @@ symbols = normalise_keys(
         # keys to press on a standard US keyboard layout. Commands for keys that do
         # require modifiers (e.g. ``"caret": "^"`) should belong in
         # ``text/symbol.py``.
-        "(tick | back tick)": "`",
+        "back tick": "`",
         "(comma | ,)": ",",
         "(dot | period)": ".",
         "(semicolon | semi)": ";",

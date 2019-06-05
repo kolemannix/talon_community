@@ -93,8 +93,8 @@ def new_server(m):
 keymap = {
     "shell Whereami": "pwd ",
     "shell home": "~/",
-    "lefty": Key("ctrl-a"),
-    "ricky": Key("ctrl-e"),
+    "lefty": Key("home"),
+    "ricky": Key("end"),
     "clear back": Key("ctrl-u"),
     "clear line": [Key("ctrl-e"), Key("ctrl-u")],
     "(pain new | split vertical)": Key("cmd-d"),

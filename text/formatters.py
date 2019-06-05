@@ -9,6 +9,7 @@ from ..utils import (
     text,
     sentence_text,
     word,
+    capitalized_word,
     parse_words,
     spoken_text,
 )
@@ -53,21 +54,21 @@ formatters = normalise_keys(
     }
 )
 
-# Surrounders are scary
-surrounders = normalise_keys(
-    {
-        "(dubstring | coif)": (False, surround('"')),
-        "(string | posh)": (False, surround("'")),
-        "(tics | glitch)": (False, surround("`")),
-        "padded": (False, surround(" ")),
-        "dunder": (False, surround("__")),
-        "angler": (False, surround("<", ">")),
-        "brax": (False, surround("[", "]")),
-        "kirk": (False, surround("{", "}")),
-    }
-)
+# Surrounders are scary, disable for now
+# surrounders = normalise_keys(
+#     {
+#         "(dubstring | coif)": (False, surround('"')),
+#         "(string | posh)": (False, surround("'")),
+#         "(tics | glitch)": (False, surround("`")),
+#         "padded": (False, surround(" ")),
+#         "dunder": (False, surround("__")),
+#         "angler": (False, surround("<", ">")),
+#         "brax": (False, surround("[", "]")),
+#         "kirk": (False, surround("{", "}")),
+#     }
+# )
 
-formatters.update(surrounders)
+# formatters.update(surrounders)
 
 
 def FormatText(m):
@@ -112,6 +113,7 @@ ctx.keymap(
         "(comma | ,) <dgndictation> [over]": [", ", spoken_text],
         "period <dgndictation> [over]": [". ", sentence_text],
         "word <dgnwords>": word,
+        "big <dgnwords>": capitalized_word,
         "(%s)+ [<dgndictation>] [over]" % (" | ".join(formatters)): FormatText,
         # to match surrounder command + another command (i.e. not dgndictation)
         # "(%s)+" % (" | ".join(surrounders)): FormatText,

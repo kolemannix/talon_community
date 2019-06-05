@@ -17,9 +17,9 @@ ctx.keymap(
         "word (dickt | dictionary)": "dict",
         "word shell": "shell",
         "word talon": "talon",
-        "word val": "val",
         "word tip": "tip",
         "word koleman": "koleman",
-        "word sbt": "sbt"
+        "word sbt": "sbt",
+        "word null": "null"
     }
 )
