@@ -4,7 +4,7 @@ import requests
 import talon.clip as clip
 from talon import ctrl
 from talon.ui import active_app
-from talon.voice import Context, Key
+from talon.voice import Context, ContextGroup, Key
 
 from ..utils import optional_numerals, text, text_to_number, text_to_range
 
@@ -137,6 +137,7 @@ def grab_identifier(m):
         delayed_click(m, button=0, times=2)
         for _ in range(times - 1):
             send_idea_command("action EditorSelectWord")
+            
         send_idea_command("action EditorCopy")
         send_idea_command("goto {} {}".format(old_line, old_col))
         send_idea_command("action EditorPaste")
@@ -152,103 +153,110 @@ def is_real_jetbrains_editor(app, window):
     return "[" in window.title or len(window.title) == 0
 
 
-# group = ContextGroup("jetbrains")
-# ctx = Context("jetbrains", func=is_real_jetbrains_editor)  # , group=group)
+group = ContextGroup("jetbrains")
+ctx = Context("jetbrains", func=is_real_jetbrains_editor)  # , group=group)
 
-# ctx.keymap(
-#     {
-#         "complete": idea("action CodeCompletion"),
-#         "smarter": idea("action SmartTypeCompletion"),
-#         "finish": idea("action EditorCompleteStatement"),
-#         "zoom": idea("action HideAllWindows"),
-#         "find (usage | usages)": idea("action FindUsages"),
-#         "(refactor | reflector) [<dgndictation>]": [
-#             idea("action Refactorings.QuickListPopupAction"),
-#             text,
-#         ],
-#         "fix [this]": idea("action ShowIntentionActions"),
-#         "fix next [error]": [
-#             idea("action GotoNextError"),
-#             idea("action ShowIntentionActions"),
-#         ],
-#         "fix previous [error]": [
-#             idea("action GotoPreviousError"),
-#             idea("action ShowIntentionActions"),
-#         ],
-#         "visit declaration": idea("action GotoDeclaration"),
-#         "visit (implementers | implementations)": idea("action GotoImplementation"),
-#         "visit type": idea("action GotoTypeDeclaration"),
-#         "(select previous | trail) <dgndictation>": idea_find("prev"),
-#         "(select next | crew) <dgndictation>": idea_find("next"),
-#         "search everywhere [for] [<dgndictation>]": [
-#             idea("action SearchEverywhere"),
-#             text,
-#         ],
-#         "search [for] [<dgndictation>]": [idea("action Find"), text],
-#         "search [for] this": idea("action FindWordAtCaret"),
-#         "next result": idea("action FindNext"),
-#         "(last | previous) result": idea("action FindPrevious"),
-#         "surround [this] [<dgndictation>]": [idea("action SurroundWith"), text],
-#         "generate [<dgndictation>]": [idea("action Generate"), text],
-#         "template [<dgndictation>]": [idea("action InsertLiveTemplate"), text],
-#         "select less": idea("action EditorUnSelectWord"),
-#         "select more": idea("action EditorSelectWord"),
-#         f"select (lines | line) {optional_numerals}": [
-#             idea_num("goto {} 0", drop=2),
-#             idea("action EditorLineStart"),
-#             idea("action EditorLineEndWithSelection"),
-#         ],
-#         "select block": [
-#             idea("action EditorCodeBlockStart"),
-#             idea("action EditorCodeBlockEndWithSelection"),
-#         ],
-#         "select this line": [
-#             idea("action EditorLineStart"),
-#             idea("action EditorLineEndWithSelection"),
-#         ],
-#         f"select lines {optional_numerals} until {optional_numerals}": idea_range(
-#             "range {} {}", drop=2
-#         ),
-#         f"select until {optional_numerals}": idea_num("extend {}", drop=2),
-#         f"(go | jump) to end of {optional_numerals}": idea_num("goto {} 9999", drop=4),
-#         "(clean | clear) line": [
-#             idea("action EditorLineEnd"),
-#             idea("action EditorDeleteToLineStart"),
-#         ],
-#         "(delete | remove) line": idea(
-#             "action EditorDeleteLine"
-#         ),  # xxx optional line number
-#         "(delete | clear) to end": idea("action EditorDeleteToLineEnd"),
-#         "(delete | clear) to start": idea("action EditorDeleteToLineStart"),
-#         "drag up": idea("action MoveLineUp"),
-#         "drag down": idea("action MoveLineDown"),
-#         "duplicate": idea("action EditorDuplicate"),
-#         "(go | jump) back": idea("action Back"),
-#         "(go | jump) forward": idea("action Forward"),
-#         "(synchronizing | synchronize)": idea("action Synchronize"),
-#         "comment": idea("action CommentByLineComment"),
-#         "(action | please) [<dgndictation>]": [idea("action GotoAction"), text],
-#         f"(go to | jump to) {optional_numerals}": idea_num("goto {} 0", drop=2),
-#         f"clone line {optional_numerals}": idea_num("clone {}", drop=2),
-#         f"grab {optional_numerals}": grab_identifier,
-#         "(start | stop) recording": idea("action StartStopMacroRecording"),
-#         "edit (recording | recordings)": idea("action EditMacros"),
-#         "play recording": idea("action PlaybackLastMacro"),
-#         "play recording <dgndictation>": [
-#             idea("action PlaySavedMacrosAction"),
-#             text,
-#             Key("enter"),
-#         ],
-#         "show (mark | marks | bookmark | bookmarks)": idea("action ShowBookmarks"),
-#         "[toggle] (mark | bookmark)": idea("action ToggleBookmark"),
-#         "next (mark | bookmark)": idea("action GotoNextBookmark"),
-#         "(last | previous) (mark | bookmark)": idea("action GotoPreviousBookmark"),
-#         f"(mark | bookmark) (0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)": idea_num(
-#             "action ToggleBookmark{}", drop=1, zero_okay=True
-#         ),
-#         f"(jump | go) (mark | bookmark) (0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)": idea_num(
-#             "action GotoBookmark{}", drop=2, zero_okay=True
-#         ),
-#     }
-# )
-# group.load()
+ctx.keymap(
+    {
+        "comment toggle": Key("cmd-/"),
+        "compile": [Key("ctrl-c"), "c"],
+        "run": [Key("ctrl-c"), "r"],
+        "go [<dgndictation>]": [
+            Key("cmd-e"),
+            # idea("action SearchEverywhere"),
+            text,
+        ],
+        "ace [<dgndictation>]": [Key("ctrl-;"), text],
+        "toggle": Key("ctrl-tab"),
+        "search project [<dgndictation>]": [Key("ctrl-shift-f"), text],
+        # "complete": idea("action CodeCompletion"),
+        # "smarter": idea("action SmartTypeCompletion"),
+        # "finish": idea("action EditorCompleteStatement"),
+        # "zoom": idea("action HideAllWindows"),
+        # "find (usage | usages)": idea("action FindUsages"),
+        # "(refactor | reflector) [<dgndictation>]": [
+        #     idea("action Refactorings.QuickListPopupAction"),
+        #     text,
+        # ],
+        # "fix [this]": idea("action ShowIntentionActions"),
+        # "fix next [error]": [
+        #     idea("action GotoNextError"),
+        #     idea("action ShowIntentionActions"),
+        # ],
+        # "fix previous [error]": [
+        #     idea("action GotoPreviousError"),
+        #     idea("action ShowIntentionActions"),
+        # ],
+        # "visit declaration": idea("action GotoDeclaration"),
+        # "visit (implementers | implementations)": idea("action GotoImplementation"),
+        # "visit type": idea("action GotoTypeDeclaration"),
+        # "(select previous | trail) <dgndictation>": idea_find("prev"),
+        # "(select next | crew) <dgndictation>": idea_find("next"),
+        # "search [for] [<dgndictation>]": [idea("action Find"), text],
+        # "search [for] this": idea("action FindWordAtCaret"),
+        # "next result": idea("action FindNext"),
+        # "(last | previous) result": idea("action FindPrevious"),
+        # "surround [this] [<dgndictation>]": [idea("action SurroundWith"), text],
+        # "generate [<dgndictation>]": [idea("action Generate"), text],
+        # "template [<dgndictation>]": [idea("action InsertLiveTemplate"), text],
+        # "select less": idea("action EditorUnSelectWord"),
+        # "select more": idea("action EditorSelectWord"),
+        # f"select (lines | line) {optional_numerals}": [
+        #     idea_num("goto {} 0", drop=2),
+        #     idea("action EditorLineStart"),
+        #     idea("action EditorLineEndWithSelection"),
+        # ],
+        # "select block": [
+        #     idea("action EditorCodeBlockStart"),
+        #     idea("action EditorCodeBlockEndWithSelection"),
+        # ],
+        # "select this line": [
+        #     idea("action EditorLineStart"),
+        #     idea("action EditorLineEndWithSelection"),
+        # ],
+        # f"select lines {optional_numerals} until {optional_numerals}": idea_range(
+        #     "range {} {}", drop=2
+        # ),
+        # f"select until {optional_numerals}": idea_num("extend {}", drop=2),
+        # f"(go | jump) to end of {optional_numerals}": idea_num("goto {} 9999", drop=4),
+        # "(clean | clear) line": [
+        #     idea("action EditorLineEnd"),
+        #     idea("action EditorDeleteToLineStart"),
+        # ],
+        # "(delete | remove) line": idea(
+        #     "action EditorDeleteLine"
+        # ),  # xxx optional line number
+        # "(delete | clear) to end": idea("action EditorDeleteToLineEnd"),
+        # "(delete | clear) to start": idea("action EditorDeleteToLineStart"),
+        # "drag up": idea("action MoveLineUp"),
+        # "drag down": idea("action MoveLineDown"),
+        # "duplicate": idea("action EditorDuplicate"),
+        # "(go | jump) back": idea("action Back"),
+        # "(go | jump) forward": idea("action Forward"),
+        # "(synchronizing | synchronize)": idea("action Synchronize"),
+        # "comment": idea("action CommentByLineComment"),
+        # "(action | please) [<dgndictation>]": [idea("action GotoAction"), text],
+        # f"(go to | jump to) {optional_numerals}": idea_num("goto {} 0", drop=2),
+        # f"clone line {optional_numerals}": idea_num("clone {}", drop=2),
+        # f"grab {optional_numerals}": grab_identifier,
+        # "(start | stop) recording": idea("action StartStopMacroRecording"),
+        # "edit (recording | recordings)": idea("action EditMacros"),
+        # "play recording": idea("action PlaybackLastMacro"),
+        # "play recording <dgndictation>": [
+        #     idea("action PlaySavedMacrosAction"),
+        #     text,
+        #     Key("enter"),
+        # ],
+        # "show (mark | marks | bookmark | bookmarks)": idea("action ShowBookmarks"),
+        # "[toggle] (mark | bookmark)": idea("action ToggleBookmark"),
+        # "next (mark | bookmark)": idea("action GotoNextBookmark"),
+        # "(last | previous) (mark | bookmark)": idea("action GotoPreviousBookmark"),
+        # f"(mark | bookmark) (0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)": idea_num(
+        #     "action ToggleBookmark{}", drop=1, zero_okay=True
+        # ),
+        # f"(jump | go) (mark | bookmark) (0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)": idea_num(
+        #     "action GotoBookmark{}", drop=2, zero_okay=True
+        # ),
+    }
+)
+group.load()

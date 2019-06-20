@@ -1,62 +1,67 @@
 """
 """
 
-from talon.voice import Context, Key
-from ..utils import text
+from talon.voice import Context, Key, press
+from ..utils import text, numeral_list, extract_num_from_m
+import time
 
 ctx = Context("general_lang")
+ctx.set_list("n", numeral_list)
+
+def back_n(m):
+    n = extract_num_from_m(m, 1)
+    if n > 10:
+        n = 10
+
+    for i in range(0, n):
+        press("backspace")
+        time.sleep(0.025)
 
 ctx.keymap(
     {
         # Vim-like Editor
+        # "debug line": ["Idbg!(", Key("esc"), "$i)", Key("esc"), "0e"],
+        "fix me [<dgndictation>]": ["// FIXME: ", text],
+        "to do [<dgndictation>]": ["// TODO: ", text],
+        "line down": "o",
+        "line up": "O",
+        "jump up": Key("ctrl-u"),
+        "jump down": Key("ctrl-d"),
         "redo": Key("ctrl-r"),
-        "scala option": ["Option[]", Key("left")],
-        # Operators
-        # "args": ["()", Key("left")],
-        # Somehow 'args' doesn't work
+        "bubble [{general_lang.n}]": back_n,
+        "dupe": "yyp",
+        "args": ["()", Key("left")],
+        # combos
         "spamma": ", ",
-        "bargs": ["()", Key("left")],
-        "fun [<dgndictation>]": ["fn ", text],
-        "def [<dgndictation>]": ["def ", text],
-        "val [<dgndictation>]": ["val ", text],
-        "let [<dgndictation>]": ["let ", text],
-        "function [<dgndictation>]": ["fn ", text],
-        "pub": "pub ",
-        "(op equals | assign | equeft)": " = ",
-        "(op (minus | subtract) | deminus)": " - ",
-        "(op (plus | add) | deplush)": " + ",
-        "(op (times | multiply) | duster)": " * ",
-        "(op divide | divy)": " / ",
+        "sinker": [Key("cmd-right ;")],
+        "coal space": ": ",
+        # Operators
+        "(op equals | assign)": " = ",
+        "op (minus | subtract)": " - ",
+        "op (plus | add)": " + ",
+        "(op times | multiply)": " * ",
+        "op divide": " / ",
         "op mod": " % ",
-        "((op minus | subtract) equals | minus assign)": " -= ",
-        "((op plus | add) equals | (plus | add) assign)": " += ",
-        "([op] (times | multiply) (assign | equals) | star assign)": " *= ",
-        "[op] divide (assign | equals)": " /= ",
-        "[op] mod (assign | equals)": " %= ",
-        "(op colon (equals | assign) | coleek)": " := ",
-        "(op | is) greater [than]": " > ",
-        "(op | is) less [than]": " < ",
-        "((op | is) equal [to] | longqual)": " == ",
-        "((op | is) not equal [to] | banquall)": " != ",
+        "coleek": " := ",
+        "op greater than": " > ",
+        "op less than": " < ",
+        "op equals": " == ",
+        "op not equal": " != ",
         "((op | is) greater [than] or equal [to] | grayqual)": " >= ",
         "((op | is) less [than] or equal [to] | lessqual)": " <= ",
-        "([(op | is)] exactly (equal [to] | equals) | triple equals | trickle)": " === ",
         "([(op | is)] not exactly (equal [to] | equals) | ranqual | nockle)": " !== ",
         "(op (power | exponent) | to the power [of])": " ** ",
         "op and": " && ",
         "op or": " || ",
         "[op] (logical | bitwise) and": " & ",
         "([op] (logical | bitwise) or | (op | D) pipe)": " | ",
-        "[(op | logical | bitwise)] (ex | exclusive) or": " ^ ",
-        "(op | logical | bitwise) (left shift | shift left)": " << ",
-        "(op | logical | bitwise) (right shift | shift right)": " >> ",
         "(op | logical | bitwise) and equals": " &= ",
         "(op | logical | bitwise) or equals": " |= ",
         "(op | logical | bitwise) (ex | exclusive) or equals": " ^= ",
         "[(op | logical | bitwise)] (left shift | shift left) equals": " <<= ",
         "[(op | logical | bitwise)] (right shift | shift right) equals": " >>= ",
-        "[op] (arrow | lambo)": " -> ",
-        "[op] fat (arrow | lambo)": " => ",
+        "arrow": " -> ",
+        "double arrow": " => ",
         # Completed matchables
         "empty (dict | object)": "{}",
         "(empty array | brackers)": "[]",
@@ -67,8 +72,6 @@ ctx.keymap(
         # Combos
         "coalshock": [":", Key("enter")],
         "comshock": [",", Key("enter")],
-        "sinker": [Key("cmd-right ;")],
-        "coalgap": ": ",
         "[forward] slasher": "// ",
         # Statements
         "state (def | deaf | deft)": "def ",
@@ -91,3 +94,4 @@ ctx.keymap(
         "comment py": "# ",
     }
 )
+

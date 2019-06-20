@@ -183,6 +183,29 @@ def word_prev(m, valid_characters=alphanumeric):
         press("shift-left")
 
 
+def left_go(m):
+    # Defaults to 1
+    n = extract_num_from_m(m, 1)
+    press_n("alt-left", n)
+
+def right_go(m):
+    # Defaults to 1
+    n = extract_num_from_m(m, 1)
+    press_n("alt-right", n)
+
+def press_n(key, n):
+    for i in range(0, n):
+        press(key)
+
+def delete_word_left(m):
+    n = extract_num_from_m(m, 1)
+    press_n("alt-backspace", n)
+    
+
+def delete_word_right(m):
+    n = extract_num_from_m(m, 1)
+    press_n("alt-delete", n)
+
 ctx.keymap(
     {
         # meta
@@ -190,16 +213,16 @@ ctx.keymap(
         "undo it": Key("cmd-z"),
         "redo it": Key("cmd-shift-z"),
         # clipboard
-        "(clip cut | snatch)": Key("cmd-x"),
-        "(clip copy | stoosh)": Key("cmd-c"),
-        "(clip paste | spark)": Key("cmd-v"),
+        "clip cut": Key("cmd-x"),
+        "clip copy": Key("cmd-c"),
+        "clip paste": Key("cmd-v"),
         # motions
-        "(go word left | fame | peg)": Key("alt-left"),
-        "(go word right | fish | fran)": Key("alt-right"),
-        "(go line after end | derek)": Key("cmd-right space"),
-        "(go line start)": Key("cmd-left"),
-        "(go line end)": Key("cmd-right"),
-        "(go line before end | smear)": Key("cmd-right left"),
+        "go word left [{generic_editor.n}]": left_go,
+        "go word right [{generic_editor.n}]": right_go,
+        "go line after end": Key("cmd-right space"),
+        "go line start": Key("cmd-left"),
+        "go line end": Key("cmd-right"),
+        "go line before end": Key("cmd-right left"),
         # insertions
         "([insert] line break | sky turn)": Key("shift-enter"),
         # "([insert] new line below | slap)": Key("cmd-right enter"),
@@ -208,31 +231,31 @@ ctx.keymap(
             "ctrl-a cmd-left shift-down cmd-c down cmd-v"
         ),
         # deleting
-        "(delete around this | slurp)": Key("backspace delete"),
-        "(delete line left | snip left | snipple)": Key("shift-cmd-left delete"),
-        "(delete line right | snip right | snipper)": Key("shift-cmd-right delete"),
+        "delete around this": Key("backspace delete"),
+        "(delete line left | snip left)": Key("shift-cmd-left delete"),
+        "(delete line right | snip right)": Key("shift-cmd-right delete"),
         "(delete [this] line)": Key("shift-cmd-right delete delete ctrl-a cmd-left"),
-        "(delete word left | trough | steffi | carmex)": Key("alt-backspace"),
-        "(delete word right | stippy | kite)": Key("alt-delete"),
-        "(delete [this] word | slurpies)": Key("alt-backspace alt-delete"),
+        "delete word left [{generic_editor.n}]": delete_word_left,
+        "delete word right [{generic_editor.n}]": delete_word_right,
+        "delete [this] word": Key("alt-backspace alt-delete"),
         # selecting
         "(select find right | crew) <dgndictation>": select_text_to_right_of_cursor,
         "(select find left | trail) <dgndictation>": select_text_to_left_of_cursor,
         "(select this word | word this)": Key("alt-right shift-alt-left"),
         "(select this line | shackle)": Key("cmd-right shift-cmd-left"),
         "(select above | shift home)": Key("shift-home"),
-        "(select up | shreep)": Key("shift-up"),
-        "(select down | shroom)": Key("shift-down"),
-        "(select all | olly | ali)": Key("cmd-a"),
-        "(select left | shrim | shlicky)": Key("shift-left"),
-        "(select right | shrish | shricky)": Key("shift-right"),
+        "select up": Key("shift-up"),
+        "select down": Key("shift-down"),
+        "select all": Key("cmd-a"),
+        "select left": Key("shift-left"),
+        "select right": Key("shift-right"),
         "(select word number {generic_editor.n}* above | wordpreev {generic_editor.n}*)": word_prev,
         "big word preev {generic_editor.n}*": big_word_prev,
         "big word neck {generic_editor.n}*": big_word_neck,
         "(select word number {generic_editor.n}* below | wordneck {generic_editor.n}*)": word_neck,
-        "(select word left | scram)": Key("alt-shift-left"),
-        "(select word right | scrish)": Key("alt-shift-right"),
-        "(select line left | lecksy)": Key("cmd-shift-left"),
-        "(select line right | ricksy)": Key("cmd-shift-right"),
+        "select word left": Key("alt-shift-left"),
+        "select word right": Key("alt-shift-right"),
+        "select line left": Key("cmd-shift-left"),
+        "select line right": Key("cmd-shift-right"),
     }
 )

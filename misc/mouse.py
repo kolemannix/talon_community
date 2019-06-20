@@ -70,10 +70,10 @@ def delayed_tripclick(m):
 
 def mouse_scroll(amount):
     def scroll(m):
-        ctrl.mouse_scroll(y=amount)
-
+        delta = 1 if amount > 0 else -1
+        for i in range(0, abs(amount)):
+            ctrl.mouse_scroll(y=delta)
     return scroll
-
 
 def mouse_drag(m):
     x, y = click_pos(m)
@@ -95,18 +95,18 @@ def mouse_center(m):
 
 keymap = {
     # jsc modified with some voice-code compatibility
-    "righty": delayed_right_click,
-    # "(click | chiff)": delayed_click,
-    "chiff": delayed_click,
-    "dubclick": delayed_dubclick,
-    "(tripclick | triplick)": delayed_tripclick,
-    "drag": mouse_drag,
-    "release": mouse_release,
-    # jsc added
-    "(shift click | shicks)": shift_click,
-    "(command click | chom lick)": command_click,
-    "wheel down": mouse_scroll(200),
-    "wheel up": mouse_scroll(-200),
+    "click [right]": delayed_right_click,
+    "click [left]": delayed_click,
+    "click double": delayed_dubclick,
+    "click triple": delayed_tripclick,
+    "click drag": mouse_drag,
+    "click release": mouse_release,
+    "click shift": shift_click,
+    "click command": command_click,
+    "scroll down": mouse_scroll(300),
+    "scroll up": mouse_scroll(-300),
+    "scroll down big": mouse_scroll(600),
+    "scroll up big": mouse_scroll(-600),
     "mouse center": mouse_center,
 }
 

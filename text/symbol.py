@@ -13,8 +13,8 @@ keymap = {
     "(dollar [sign] | dolly)": "$",
     "(downscore | crunder | down score)": "_",
     "colon": ":",
-    "(paren | left paren | open paren )": "(",
-    "(R paren | close paren | right paren)": ")",
+    "(paren | left paren | open paren)": "(",
+    "(close paren | right paren | R paren)": ")",
     "(brace | left brace | open brace)": "{",
     "(closing brace | right brace | close brace)": "}",
     "(angle | left angle | less than)": "<",
@@ -37,7 +37,6 @@ keymap = {
     "triple tick": "```",
     "[forward] dubslash": "//",
     "coal twice": "::",
-    "(dot dot | dotdot)": "..",
     "(ellipsis | dot dot dot | dotdotdot)": "...",
     # unnecessary: use repetition commands?
 }

@@ -19,7 +19,7 @@ def make_key(function_name="Key"):
             print("no key", m)
             return
         key_text = "-".join(modifiers + [key])
-        Str(f"{function_name}('{key_text}')")(None)
+        Str(f"{function_name}(\"{key_text}\")")(None)
 
     return key
 
@@ -48,7 +48,7 @@ ctx.keymap(
     {
         "key {basic_keys.modifiers}* {basic_keys.keymap}": make_key("Key"),
         "press {basic_keys.modifiers}* {basic_keys.keymap}": make_key("press"),
-        "talon map <dgndictation>": ("'", text, "': ,", Key("left")),
+        "talon map <dgndictation>": ("\"", text, "\": ,", Key("left")),
         "talon map string <dgndictation>": format_text("'{0}': '{0}',"),
         "dragon dictation": "<dgndictation>",
         # "stir": ["Str()(None)"] + [Key("left")] * 7,

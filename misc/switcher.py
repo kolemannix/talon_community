@@ -13,7 +13,6 @@ def lookup_app(m=None, name=None):
     elif name is None:
         name = str(m["switcher.running"][0])
 
-    print(running)
     full = running.get(name)
     if not full:
         return
@@ -25,7 +24,6 @@ def lookup_app(m=None, name=None):
 def switch_app(m=None, name=None):
     app = lookup_app(m=m, name=name)
     app.focus()
-    print(dir(app))
     # TODO: replace sleep with a check to see when it is in foreground
     time.sleep(0.25)
 

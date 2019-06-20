@@ -2,7 +2,7 @@ from talon.voice import Context, press, Key
 import string
 from ..utils import normalise_keys, insert
 
-alpha_alt = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split()
+alpha_alt = "air bat cap dumb each fine gust harp sit gym crunch look made near odd pit quench red sun trap urge vest whale ex yank zip".split()
 alphabet = dict(zip(alpha_alt, string.ascii_lowercase))
 
 f_keys = {f"F {i}": f"f{i}" for i in range(1, 13)}
@@ -10,19 +10,20 @@ f_keys = {f"F {i}": f"f{i}" for i in range(1, 13)}
 simple_keys = normalise_keys(
     {
         "(crimp | lloyd)": "left",
-        "chris": "right",
+        # "chris": "right",
         "jeep": "up",
         "( dune | doom )": "down",
         "backspace": "backspace",
         "delete": "delete",
         "(space | skoosh)": "space",
         "(tab | tarp)": "tab",
-        "( enter | yep )": "enter",
-        "( escape | ex )": "escape",
+        "enter": "enter",
+        "(escape | break)": "escape",
         "home": "home",
         "pagedown": "pagedown",
         "pageup": "pageup",
-        "end": "end",
+        # "end": "end",
+        "O": "0"
     }
 )
 
@@ -36,13 +37,14 @@ symbols = normalise_keys(
         "(comma | ,)": ",",
         "(dot | period)": ".",
         "(semicolon | semi)": ";",
-        "(quote | quatchet)": "'",
-        "(bracket | L bracket | left bracket | open bracket)": "[",
-        "(R bracket | right bracket | close bracket)": "]",
+        "quote": "'",
+        "(bracket | left bracket | open bracket)": "[",
+        "(right bracket | close bracket)": "]",
         "(slash | forward slash)": "/",
         "backslash": "\\",
         "(minus | dash)": "-",
-        "(equals | smaqual)": "=",
+        "equals": "=",
+        # [h[]'''
     }
 )
 
@@ -122,8 +124,8 @@ ctx.keymap(
         "{basic_keys.modifiers}* {basic_keys.keys}+": press_keys,
         "(go | {basic_keys.modifiers}+) {basic_keys.arrows}+": press_keys,
         "number {basic_keys.digits}+ [over]": press_keys,
-        "tarsh": Key("shift-tab"),
-        "tarpy": [Key("tab"), Key("tab")],
+        # "tarsh": Key("shift-tab"),
+        # "tarpy": [Key("tab"), Key("tab")],
     }
 )
 ctx.set_list("alphabet", alphabet.keys())

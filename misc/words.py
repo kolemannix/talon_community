@@ -8,6 +8,10 @@ ctx = Context("words")
 
 ctx.keymap(
     {
+        "word enum": "enum",
+        "word json": "json",
+        "word hash": "hash",
+        "word scala": "scala",
         "word queue": "queue",
         "word eye": "eye",
         "word bson": "bson",

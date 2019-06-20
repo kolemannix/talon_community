@@ -108,7 +108,6 @@ def go_to_webpage(m):
     press("cmd-t")
     navigate_to_url(get_webpage(m))
 
-
 context.keymap(
     {
         "(address bar | focus address | focus url | url)": focus_address_bar,
@@ -118,14 +117,13 @@ context.keymap(
         "page reload": Key("cmd-r"),
         "reload page": Key("cmd-r"),
         "hard reload": Key("cmd-shift-r"),
-        "new tab": Key("cmd-t"),
-        "new tab {global_browser.webpages}": go_to_webpage,
-        "close tab": Key("cmd-w"),
-        "(reopen | unclose) tab": Key("cmd-shift-t"),
-        "(next tab | goneck)": Key("cmd-shift-]"),
-        "((last | previous | preev) tab | gopreev)": Key("cmd-shift-["),
+        "tab new": Key("cmd-t"),
+        "tab close": Key("cmd-w"),
+        "tab reopen": Key("cmd-shift-t"),
+        "tab next": Key("cmd-shift-]"),
+        "tab last": Key("cmd-shift-["),
         "tab (1 | 2 | 3 | 4 | 5 | 6 | 7 | 8)": jump_tab,
-        "(end | rightmost) tab": Key("cmd-9"),
+        "tab end": Key("cmd-9"),
         "marco": Key("cmd-f"),
         "marneck": Key("cmd-g"),
         "(last | prevous)": Key("cmd-shift-g"),
@@ -144,21 +142,9 @@ context.keymap(
         "show source[s] [panel]": lambda m: show_panel("Sources"),
         "(refocus | focus) page": refocus_page,
         "[refocus] dev tools": open_focus_devtools,
-        # Clipboard
-        "cut": Key("cmd-x"),
-        "copy": Key("cmd-c"),
-        "paste": Key("cmd-v"),
         "paste same style": Key("cmd-alt-shift-v"),
-        # "mendeley": Key("cmd-shift-m"),
-        "(add | save) to mendeley": mendeley,
         # TODO: this should probably be specific to the page
         "submit": Key("cmd-enter"),
-        # zotero
-        "zotero": Key("cmd-shift-z"),
-        # rearrange tabs: https://chrome.google.com/webstore/detail/rearrange-tabs/ccnnhhnmpoffieppjjkhdakcoejcpbga
-        # "move tab left": Key("ctrl-shift-left"),
-        # "move tab right": Key("ctrl-shift-right"),
-        # "move tab left way": Key("ctrl-shift-down"),
         # vimium
         "link": link,
         "move tab left": browser.send_to_vimium("<<"),

@@ -37,7 +37,7 @@ keymap = {
     "grab left": Key("shift-up"),
     "grab right": Key("shift-down"),
     "add line": Key("shift-enter"),
-    "(slaw | slapper)": [Key("cmd-right"), Key("shift-enter")],
+    "slaw": [Key("cmd-right"), Key("shift-enter")],
     "(react | reaction)": Key("cmd-shift-\\"),
     "user": Key("@"),
     "tag channel": Key("#"),
