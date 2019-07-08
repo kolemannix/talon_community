@@ -205,6 +205,13 @@ def delete_word_left(m):
 def delete_word_right(m):
     n = extract_num_from_m(m, 1)
     press_n("alt-delete", n)
+def select_word_right(m):
+    n = extract_num_from_m(m, 1)
+    press_n("alt-shift-right", n)
+
+def select_word_left(m):
+    n = extract_num_from_m(m, 1)
+    press_n("alt-shift-left", n)
 
 ctx.keymap(
     {
@@ -253,8 +260,8 @@ ctx.keymap(
         "big word preev {generic_editor.n}*": big_word_prev,
         "big word neck {generic_editor.n}*": big_word_neck,
         "(select word number {generic_editor.n}* below | wordneck {generic_editor.n}*)": word_neck,
-        "select word left": Key("alt-shift-left"),
-        "select word right": Key("alt-shift-right"),
+        "select word left [{generic_editor.n}]": select_word_left, # Key("alt-shift-left"),
+        "select word right [{generic_editor.n}]": select_word_right, # Key("alt-shift-right"),
         "select line left": Key("cmd-shift-left"),
         "select line right": Key("cmd-shift-right"),
     }
