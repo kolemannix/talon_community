@@ -95,7 +95,7 @@ def mouse_center(m):
 
 keymap = {
     # jsc modified with some voice-code compatibility
-    "click [right]": delayed_right_click,
+    "click right": delayed_right_click,
     "click [left]": delayed_click,
     "click double": delayed_dubclick,
     "click triple": delayed_tripclick,

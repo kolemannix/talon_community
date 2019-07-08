@@ -161,7 +161,7 @@ ctx.keymap(
         "comment toggle": Key("cmd-/"),
         "compile": [Key("ctrl-c"), "c"],
         "run": [Key("ctrl-c"), "r"],
-        "go [<dgndictation>]": [
+        "go to [<dgndictation>]": [
             Key("cmd-e"),
             # idea("action SearchEverywhere"),
             text,

@@ -42,4 +42,4 @@ def repeat(m):
     repeater.ctx = talon
     return repeater(None)
 
-ctx.keymap({"repeat {repeater.ordinals}": repeat})
+ctx.keymap({"{repeater.ordinals}": repeat})

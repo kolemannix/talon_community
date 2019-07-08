@@ -9,7 +9,7 @@ f_keys = {f"F {i}": f"f{i}" for i in range(1, 13)}
 
 simple_keys = normalise_keys(
     {
-        "(crimp | lloyd)": "left",
+        # "lloyd": "left",
         # "chris": "right",
         "jeep": "up",
         "( dune | doom )": "down",
@@ -17,7 +17,7 @@ simple_keys = normalise_keys(
         "delete": "delete",
         "(space | skoosh)": "space",
         "(tab | tarp)": "tab",
-        "enter": "enter",
+        "(enter | send)": "enter",
         "(escape | break)": "escape",
         "home": "home",
         "pagedown": "pagedown",
@@ -37,9 +37,9 @@ symbols = normalise_keys(
         "(comma | ,)": ",",
         "(dot | period)": ".",
         "(semicolon | semi)": ";",
-        "quote": "'",
-        "(bracket | left bracket | open bracket)": "[",
-        "(right bracket | close bracket)": "]",
+        "single quote": "'",
+        "(square | left square | open square)": "[",
+        "(right square | close square)": "]",
         "(slash | forward slash)": "/",
         "backslash": "\\",
         "(minus | dash)": "-",
@@ -105,9 +105,6 @@ def press_keys(m):
     mods = get_modifiers(m)
     keys = get_keys(m)
 
-    if mods == ["shift"] and all(key in alphabet.values() for key in keys):
-        return uppercase_letters(m)
-
     if mods:
         press("-".join(mods + [keys[0]]))
         keys = keys[1:]
@@ -116,6 +113,10 @@ def press_keys(m):
 
 
 ctx = Context("basic_keys")
+ctx.vocab = [
+    "async", "PubNub", "scala", "int", "fullstack", "cognito", "auth", "email",
+    "arn", "app"
+]
 ctx.keymap(
     {
         "(uppercase | ship | sky) {basic_keys.alphabet}+ [(lowercase | sunk)]": uppercase_letters,
