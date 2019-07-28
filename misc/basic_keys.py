@@ -115,8 +115,9 @@ def press_keys(m):
 ctx = Context("basic_keys")
 ctx.vocab = [
     "async", "PubNub", "scala", "int", "fullstack", "cognito", "auth", "email",
-    "arn", "app"
+    "arn", "app", "gen", "impl"
 ]
+
 ctx.keymap(
     {
         "(uppercase | ship | sky) {basic_keys.alphabet}+ [(lowercase | sunk)]": uppercase_letters,

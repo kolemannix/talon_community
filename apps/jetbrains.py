@@ -168,6 +168,8 @@ ctx.keymap(
         ],
         "ace [<dgndictation>]": [Key("ctrl-;"), text],
         "toggle": Key("ctrl-tab"),
+        "project": Key("cmd-1"),
+        "optimize imports": Key("cmd-alt-o"),
         "search project [<dgndictation>]": [Key("ctrl-shift-f"), text],
         # "complete": idea("action CodeCompletion"),
         # "smarter": idea("action SmartTypeCompletion"),

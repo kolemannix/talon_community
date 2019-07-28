@@ -30,6 +30,8 @@ ctx.keymap(
         "redo": Key("ctrl-r"),
         "bubble [{general_lang.n}]": back_n,
         "dupe": "yyp",
+        "kill": "dd",
+        "unwrap": "vf(df)x",
         "args": ["()", Key("left")],
         # combos
         "spamma": ", ",

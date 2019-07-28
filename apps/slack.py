@@ -20,6 +20,7 @@ keymap = {
     "move focus": Key("ctrl-`"),
     "next section": Key("f6"),
     "previous section": Key("shift-f6"),
+    "reply": [Key("shift-f6"), Key("right"), Key("space")],
     "page up": Key("pageup"),
     "page down": Key("pagedown"),
     "((open | collapse) right pane | toggle sidebar)": Key("cmd-."),
@@ -38,10 +39,7 @@ keymap = {
     "grab left": Key("shift-up"),
     "grab right": Key("shift-down"),
     "add line": Key("shift-enter"),
-    "slaw": [Key("cmd-right"), Key("shift-enter")],
     "(react | reaction)": Key("cmd-shift-\\"),
-    "user": Key("@"),
-    "tag channel": Key("#"),
     "(insert command | commandify)": Key("cmd-shift-c"),
     "insert code": [
         "``````",

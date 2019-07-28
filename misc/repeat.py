@@ -31,7 +31,7 @@ def ordinal(n):
     return str(n) + suffix
 
 
-for n in range(2, 100):
+for n in range(2, 11):
     ordinals[ordinal(n)] = n - 1
 
 ctx.set_list("ordinals", ordinals.keys())
